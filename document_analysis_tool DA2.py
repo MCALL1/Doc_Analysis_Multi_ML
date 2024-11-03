@@ -2,8 +2,39 @@
 """
 Created on Sat Nov  2 11:59:59 2024
 
-@author: mcall 
+
+@author: mcall
 """
+
+ """    The project, Legal Document Analyzer with Summarization and Keyword Extraction, integrates several advanced technologies to enhance the analysis of legal documents:
+
+   Natural Language Processing (NLP):
+        SpaCy: Utilized for tokenization, named entity recognition (NER), and part-of-speech tagging, enabling the extraction of entities such as organizations, locations, and individuals from text.
+        NLTK (Natural Language Toolkit): Employed for synonym expansion using WordNet, broadening keyword searches to include semantically related terms.
+
+   Machine Learning for Text Summarization:
+        Hugging Face Transformers: Incorporates the sshleifer/distilbart-cnn-12-6 model, a distilled version of BART (Bidirectional and Auto-Regressive Transformer), to generate concise summaries of lengthy legal documents.
+
+   Optical Character Recognition (OCR):
+        pytesseract: Applies OCR to extract text from image-based PDFs, ensuring that non-text PDFs are also analyzable.
+
+   Data Visualization:
+        WordCloud: Generates visual representations of keyword frequencies, aiding in the quick identification of prevalent terms within documents.
+        Matplotlib: Facilitates the display of word clouds and other potential visualizations.
+
+   Graphical User Interface (GUI):
+        Tkinter: Provides a user-friendly interface for selecting folders, initiating analysis, and displaying results, making the tool accessible to users without programming expertise.
+
+   Document Processing:
+        python-docx: Handles the reading and writing of Word documents, enabling the extraction and reporting of text.
+        openpyxl: Manages Excel files, allowing for the extraction of textual data from spreadsheets.
+        pdfplumber: Extracts text from PDFs, offering improved accuracy over some other PDF text extraction methods.
+
+   Date and Monetary Amount Extraction:
+        dateparser: Parses and extracts dates from text, accommodating various date formats.
+        Regular Expressions (regex): Identifies monetary amounts within text, supporting multiple currency symbols and formats.
+
+   By integrating these technologies, the project offers a comprehensive solution for analyzing legal documents, extracting pertinent information, and providing concise summaries, thereby streamlining the review process for legal professionals.
 #                          Summary of functionality
 #1. Document Type Handling:
 
