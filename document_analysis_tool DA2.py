@@ -130,20 +130,20 @@ except OSError:
 # to generate summaries for each document. The model used is "sshleifer/distilbart-cnn-12-6", 
 # a smaller, optimized version of the BART model designed for efficient summarization tasks.
 #
-# About the Model:
+       # About the Model:
 #   The model "sshleifer/distilbart-cnn-12-6" is a transformer-based sequence-to-sequence model 
 #   fine-tuned for abstractive text summarization. It is trained to generate concise summaries 
 #   that capture the main points of longer text inputs.
 #   BART (Bidirectional and Auto-Regressive Transformer) is effective for tasks like summarization 
 #   and translation due to its ability to encode input text and generate new text (a summary) as output.
 #
-# Model Initialization:
+      # Model Initialization:
 #   We initialize the summarizer pipeline using the specific model name. By setting the model explicitly, 
 #   we avoid loading a default model and ensure consistency in output across runs.
 #   If the text length of the input is very short, the script dynamically adjusts `max_length` and 
 #   min_length` to optimize summary generation and prevent unnecessary warnings.
 #
-# Purpose:
+     # Purpose:
 #   The summarizer adds value by automatically generating brief summaries for each document, allowing 
 #   quick insight into the document’s content without manually reading through it.
 #   This approach leverages pre-trained machine learning models to deliver intelligent summarization 
@@ -155,8 +155,8 @@ try:
     summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
 except Exception as e:
     print("Error initializing summarizer pipeline:", e)
-
-# Synonym Expansion for Keywords (Including Legal Terms)
+             
+             # Synonym Expansion for Keywords (Including Legal Terms)
 keywords = ["contract", "agreement", "payment", "compliance", "fine", "lease", "memo" "contract", "agreement", "payment", "compliance", "fine", "lease", "memo", "settlement", "liability", "warranty", 
 "litigation", "dispute", "arbitration", "breach", "damages", "termination", "compensation", "indemnity", 
 "disclosure", "confidentiality", "jurisdiction", "arbitrator", "liquidated", "damages", "provision", "statute", 
@@ -185,24 +185,24 @@ keywords = ["contract", "agreement", "payment", "compliance", "fine", "lease", "
 
 expanded_keywords = set(keywords)
 
-# Expand keywords with synonyms using NLTK's wordnet
+         # Expand keywords with synonyms using NLTK's wordnet
 for word in keywords:
     for syn in wordnet.synsets(word):
         for lemma in syn.lemmas():
             expanded_keywords.add(lemma.name())
 
-# Function to analyze text with NLP
+        # Function to analyze text with NLP
 def analyze_text_with_nlp(text, keywords):
     doc = nlp(text)
     found_keywords = {}
     
-    # Search for exact and expanded keywords
+              # Search for exact and expanded keywords
     for keyword in keywords:
         count = len(re.findall(r'\b' + re.escape(keyword) + r'\b', text, flags=re.IGNORECASE))
         if count > 0:
             found_keywords[keyword] = count
 
-    # Use NER to find named entities or relevant phrases
+             # Use NER to find named entities or relevant phrases
     for ent in doc.ents:
         if ent.label_ in ["ORG", "GPE", "PERSON", "PRODUCT", "EVENT","Supreme Court", "Federal Reserve", "NASDAQ", "Wall Street Journal", "Goldman Sachs", "Department of Justice", "International Monetary Fund", "SEC", "World Bank", "Bloomberg",
  "New York Stock Exchange", "KPMG", "Deloitte", "PwC", "Federal Trade Commission", "Harvard Law Review", "Oxford University Press", "Cambridge University Press", "Blackstone Chambers", "Legal Aid Society",
